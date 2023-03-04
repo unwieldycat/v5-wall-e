@@ -22,6 +22,7 @@ void init_gui() {
   lv_style_set_border_opa(&cont_style, 0);
   lv_style_set_pad_hor(&cont_style, 0);
   lv_style_set_pad_ver(&cont_style, 8);
+  lv_style_set_pad_row(&cont_style, 16);
 
   lv_obj_t *bar_cont = lv_obj_create(lv_scr_act());
   lv_obj_add_style(bar_cont, &cont_style, LV_PART_MAIN);
