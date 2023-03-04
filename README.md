@@ -24,5 +24,4 @@ To use a device in another file, make sure to `#include "devices.h"` at the top.
 
 ### Other stuff
 - Try to run the formatter somewhat often as to not cause more than one indentation type or other inconsistencies
-- This project uses [LVGL 7.11](https://docs.lvgl.io/7.11/index.html) because jpearman's lvgl 8 port is broken (so no flexbox :<)
 - You should use [GitHub Desktop](https://desktop.github.com/) to sync changes
