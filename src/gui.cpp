@@ -12,13 +12,34 @@ std::vector<lv_obj_t*> bars;
 // ======================== Battery Widget Functions ======================== //
 
 void battery_anim() {
-  double wait_time = 750;
+  int battery_pct = Brain.Battery.capacity();
+  int pct_appx = round(battery_pct) / 10;
+
+  double wait_time = 1000;
   for (int i = 0; i < bars.size(); i++) {
+    vex::wait(wait_time, vex::timeUnits::msec);
     lv_obj_t * bar = bars.at(i);
     lv_obj_add_style(bar, &bar_style_on, LV_PART_MAIN);
 
-    vex::wait(wait_time, vex::timeUnits::msec);
-    if (i == 1) wait_time = 100;
+    if (pct_appx <= i) break;
+    if (i == 2) wait_time = 100;
+  }
+}
+
+void battery_task() {
+  while(true) {
+    int battery_pct = Brain.Battery.capacity();
+    int pct_appx = round(battery_pct) / 10;
+
+    for (int i = 0; i < bars.size(); i++) {
+      lv_obj_t * bar = bars.at(i);
+      if (pct_appx >= i) continue;
+      lv_obj_remove_style(bar, &bar_style_on, LV_PART_MAIN);
+
+      // TODO: Add red flashing warning on bottom bar if battery is low
+    }
+
+    vex::wait(10, vex::timeUnits::sec);
   }
 }
 
@@ -76,4 +97,5 @@ void init_gui() {
   }
 
   battery_anim();
+  battery_task();
 }
