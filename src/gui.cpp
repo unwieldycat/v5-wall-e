@@ -54,10 +54,10 @@ void gui::init() {
   lv_style_set_text_font(&title_style, &lv_font_montserrat_20);
   lv_style_set_text_align(&title_style, LV_TEXT_ALIGN_CENTER);
 
-  lv_obj_t *label = lv_label_create(lv_scr_act());
-  lv_obj_add_style(label, &title_style, LV_PART_MAIN);
-  lv_label_set_text(label, "SOLAR CHARGE LEVEL");
-  lv_obj_align(label, LV_ALIGN_TOP_MID, 0, 16);
+  lv_obj_t *charge_label = lv_label_create(lv_scr_act());
+  lv_obj_add_style(charge_label, &title_style, LV_PART_MAIN);
+  lv_label_set_text(charge_label, "SOLAR CHARGE LEVEL");
+  lv_obj_align(charge_label, LV_ALIGN_TOP_MID, 0, 16);
 
   lv_obj_t *img = lv_img_create(lv_scr_act());
   lv_img_set_src(img, &indicator);
@@ -97,4 +97,9 @@ void gui::init() {
     else
       lv_obj_set_size(bar, 144, 10);
   }
+
+  lv_obj_t *functions_label = lv_label_create(lv_scr_act());
+  lv_obj_add_style(functions_label, &title_style, LV_PART_MAIN);
+  lv_label_set_text(functions_label, "FUNCTIONS");
+  lv_obj_align(functions_label, LV_ALIGN_BOTTOM_MID, 0, -110);
 }

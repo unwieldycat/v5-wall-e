@@ -25,3 +25,4 @@ To use a device in another file, make sure to `#include "devices.h"` at the top.
 ### Other stuff
 - Try to run the formatter somewhat often as to not cause more than one indentation type or other inconsistencies
 - You should use [GitHub Desktop](https://desktop.github.com/) to sync changes
+- If LVGL is rebuilt to be updated, enable software display rotation and all fonts. [Link to library for V5](http://github.com/unwieldycat/vexcode-lvgllib8_X)
