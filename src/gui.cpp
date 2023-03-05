@@ -26,7 +26,9 @@ void battery_anim() {
   }
 }
 
-void battery_task() {
+void gui::battery_task() {
+  battery_anim();
+
   while(true) {
     int battery_pct = Brain.Battery.capacity();
     int pct_appx = round(battery_pct) / 10;
@@ -45,7 +47,7 @@ void battery_task() {
 
 // ============================= Initialization ============================= //
 
-void init_gui() {
+void gui::init() {
   lv_disp_set_rotation(lv_disp_get_default(), LV_DISP_ROT_90);
 
   lv_style_set_text_color(&title_style, MAIN_COLOR);
@@ -95,7 +97,4 @@ void init_gui() {
     else
       lv_obj_set_size(bar, 144, 10);
   }
-
-  battery_anim();
-  battery_task();
 }

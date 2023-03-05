@@ -4,5 +4,7 @@
 
 int main() {
   v5_lv_init();
-  init_gui();
+  gui::init();
+
+  vex::thread gui_bat_thread(gui::battery_task);
 }
