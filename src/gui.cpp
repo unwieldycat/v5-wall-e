@@ -6,6 +6,8 @@ lv_style_t title_style;
 lv_style_t cont_style;
 lv_style_t bar_style;
 lv_style_t bar_style_on;
+lv_style_t btn_style;
+lv_style_t btn_style_pr;
 
 std::vector<lv_obj_t*> bars;
 
@@ -45,10 +47,18 @@ void gui::battery_task() {
   }
 }
 
+// ========================= Mode Selector Callback ========================= //
+
+static void auton_tgl_cb(lv_event_t * event){
+  // TODO: Handle auton toggle
+}
+
 // ============================= Initialization ============================= //
 
 void gui::init() {
   lv_disp_set_rotation(lv_disp_get_default(), LV_DISP_ROT_90);
+
+  lv_obj_set_style_bg_color(lv_scr_act(), lv_color_hex(0x000000), LV_PART_MAIN);
 
   lv_style_set_text_color(&title_style, MAIN_COLOR);
   lv_style_set_text_font(&title_style, &lv_font_montserrat_20);
@@ -79,7 +89,7 @@ void gui::init() {
 
   lv_style_set_radius(&bar_style, 0);
   lv_style_set_border_opa(&bar_style, LV_OPA_0);
-  lv_style_set_bg_color(&bar_style, lv_color_hex(0x262626));
+  lv_style_set_bg_color(&bar_style, INA_COLOR);
   
   lv_style_set_shadow_color(&bar_style_on, MAIN_COLOR);
   lv_style_set_shadow_width(&bar_style_on, LV_DPX(15));
@@ -102,4 +112,25 @@ void gui::init() {
   lv_obj_add_style(functions_label, &title_style, LV_PART_MAIN);
   lv_label_set_text(functions_label, "FUNCTIONS");
   lv_obj_align(functions_label, LV_ALIGN_BOTTOM_MID, 0, -110);
+
+  lv_style_set_bg_color(&btn_style, lv_color_hex(0x000000));
+  lv_style_set_radius(&btn_style, 0);
+  lv_style_set_text_color(&btn_style, MAIN_COLOR);
+  lv_style_set_border_color(&btn_style, MAIN_COLOR);
+  lv_style_set_border_width(&btn_style, 1);
+
+  lv_style_set_text_color(&btn_style_pr, lv_color_hex(0x000000));
+  lv_style_set_bg_color(&btn_style_pr, MAIN_COLOR);
+
+  lv_obj_t *auton_btn = lv_btn_create(lv_scr_act());
+  lv_obj_add_style(auton_btn, &btn_style, LV_PART_MAIN);
+  lv_obj_add_style(auton_btn, &btn_style_pr, LV_STATE_CHECKED);
+  lv_obj_add_flag(auton_btn, LV_OBJ_FLAG_CHECKABLE);
+  lv_obj_add_event_cb(auton_btn, auton_tgl_cb, LV_EVENT_VALUE_CHANGED, NULL);
+  lv_obj_set_size(auton_btn, 224, 32);
+  lv_obj_align(auton_btn, LV_ALIGN_BOTTOM_MID, 0, -8);
+
+  lv_obj_t *auton_btn_label = lv_label_create(auton_btn);
+  lv_label_set_text(auton_btn_label, "Enable Auton Mode");
+  lv_obj_align(auton_btn_label, LV_ALIGN_CENTER, 0, 0);
 }

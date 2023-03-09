@@ -3,6 +3,7 @@
 #include "vex.h"
 
 #define MAIN_COLOR lv_color_hex(0xfafa02)
+#define INA_COLOR lv_color_hex(0x262626)
 
 namespace gui {
 /**
