@@ -12,7 +12,10 @@ extern vex::motor DriveFR;
 extern vex::motor DriveRL;
 extern vex::motor DriveRR;
 
-// Fake drive
 extern vex::motor TreadL;
 extern vex::motor TreadR;
 
+extern vex::motor_group DriveGroupL;
+extern vex::motor_group DriveGroupR;
+
+void drive();
