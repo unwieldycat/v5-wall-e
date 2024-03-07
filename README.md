@@ -31,10 +31,8 @@ vex::motor Motor(1);
 
 To use a device in another file, make sure to `#include "devices.h"` at the top.
 
-### Other stuff
+### LVGL Stuff
 
-- Try to run the formatter somewhat often as to not cause more than one indentation type or other inconsistencies
-- You should use [GitHub Desktop](https://desktop.github.com/) to sync changes
 - If LVGL is rebuilt to be updated, enable software display rotation and all fonts. [Link to library for V5](https://github.com/jpearman/vexcode-lvgllib8_X)
 - If mkrules.mk is ever overwritten, ensure the following:
   - `-L.` is placed at the end of `LNK_FLAGS` - this tells gcc to look in the root directory for library files
